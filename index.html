@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hest Enterprises — Building What's Next in Men's Health</title>
+    <meta name="description" content="Hest Enterprises is a global venture studio building, partnering, and investing in the future of men's health and performance.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset & Base ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0f0d;
+            --bg-secondary: #0f1613;
+            --bg-card: rgba(255,255,255,0.03);
+            --text-primary: #f0f0f0;
+            --text-secondary: rgba(240,240,240,0.6);
+            --text-muted: rgba(240,240,240,0.35);
+            --accent: #5dfab1;
+            --accent-dim: rgba(93,250,177,0.15);
+            --border: rgba(255,255,255,0.06);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ── Layout ── */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(10,15,13,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-cta {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: opacity 0.3s;
+        }
+
+        .nav-cta:hover { opacity: 0.7; }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(93,250,177,0.04) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 80%, rgba(93,250,177,0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.2s;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 80px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 28px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.4s;
+        }
+
+        .hero h1 .accent { color: var(--accent); }
+
+        .hero-sub {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.6s;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 36px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.8s;
+        }
+
+        .hero-tag {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ── Divider ── */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── About ── */
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .about-text {
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* ── Pillars ── */
+        .pillars .container {
+            text-align: center;
+        }
+
+        .pillars-heading {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 60px;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .pillar {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 48px 32px;
+            text-align: left;
+            transition: border-color 0.4s, background 0.4s;
+        }
+
+        .pillar:hover {
+            border-color: rgba(93,250,177,0.15);
+            background: rgba(255,255,255,0.04);
+        }
+
+        .pillar-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: var(--accent-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 20px;
+        }
+
+        .pillar h3 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+
+        .pillar p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ── Contact ── */
+        .contact {
+            padding: 120px 0;
+        }
+
+        .contact .container {
+            max-width: 600px;
+        }
+
+        .contact-heading {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .contact-heading .accent { color: var(--accent); }
+
+        .contact-sub {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            line-height: 1.7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-family: var(--font);
+            font-size: 15px;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: rgba(93,250,177,0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px 32px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-email {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-email:hover {
+            color: var(--accent);
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            section { padding: 72px 0; }
+
+            .about .container {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .hero-tags { gap: 12px; }
+
+            footer .container {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="nav-logo">Hest Enterprises</a>
+            <a href="#contact" class="nav-cta">Get In Touch</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-label">Global Venture Studio</p>
+                <h1>Building What's<br>Next in <span class="accent">Men's Health.</span></h1>
+                <p class="hero-sub">
+                    We build, partner with, and invest in brands that are redefining health, performance, and how men take care of themselves.
+                </p>
+                <div class="hero-tags">
+                    <span class="hero-tag">Brand Development</span>
+                    <span class="hero-tag">Strategic Partnerships</span>
+                    <span class="hero-tag">Investment</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- About -->
+    <section class="about">
+        <div class="container">
+            <p class="about-label fade-in">Who We Are</p>
+            <div class="about-text fade-in">
+                <p>
+                    <strong>Hest Enterprises</strong> is a global venture studio focused on the intersection of health, science, and consumer products. We're building a new category of men's health brands — grounded in research, designed for performance, and engineered to compound.
+                </p>
+                <br>
+                <p>
+                    Whether you're a <strong>supplier</strong> looking to work with a team that understands product at a deep level, a <strong>brand</strong> exploring partnerships, or someone who wants to <strong>join the mission</strong> — we'd like to hear from you.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Pillars -->
+    <section class="pillars">
+        <div class="container">
+            <p class="pillars-heading fade-in">What We Do</p>
+            <div class="pillars-grid">
+                <div class="pillar fade-in">
+                    <div class="pillar-icon">
+                        <svg width="22" height="22" fill="none" stroke="#5dfab1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Build</h3>
+                    <p>We develop health-first consumer brands from the ground up — from material science and product design to positioning and go-to-market.</p>
+                </div>
+                <div class="pillar fade-in">
+                    <div class="pillar-icon">
+                        <svg width="22" height="22" fill="none" stroke="#5dfab1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Partner</h3>
+                    <p>We work with manufacturers, suppliers, and co-creators globally. If you share our standards for quality and innovation, let's talk.</p>
+                </div>
+                <div class="pillar fade-in">
+                    <div class="pillar-icon">
+                        <svg width="22" height="22" fill="none" stroke="#5dfab1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Invest</h3>
+                    <p>We back bold ideas in health, performance, and lifestyle. If you're building something that challenges the status quo — we want to hear about it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="contact-heading fade-in">Let's <span class="accent">Talk.</span></h2>
+            <p class="contact-sub fade-in">Whether you're a potential partner, supplier, or want to join our team — drop us a line.</p>
+
+            <form action="https://formspree.io/f/xaqpnzyp" method="POST" class="fade-in">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="you@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about yourself or what you're working on..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-copy">&copy; 2026 Hest Enterprises.</p>
+            <a href="mailto:admin@hestenterprises.com" class="footer-email">admin@hestenterprises.com</a>
+        </div>
+    </footer>
+
+    <!-- Scroll Animations -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
